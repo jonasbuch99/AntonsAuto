@@ -1,0 +1,68 @@
+﻿@model PaginatedList<AntonsAuto.Models.Bilfabrikant>
+
+@{
+    ViewData["Title"] = "Fabrikanter";
+}
+
+<h1>Fabrikanter</h1>
+
+<br />
+<p>
+    <a asp-action="Create">Tilføj fabrikant</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div>
+        <p>
+            <input type="text" name="searchString" placeholder="Indtast søgeord" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Søg" class="btn btn-success" />
+            <a asp-action="Index">Nulstil</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Navn</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Navn)
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ID">Rediger</a> |
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.ID">Detaljer</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Slet</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.hasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.hasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["currentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @prevDisabled">
+    Tilbage
+</a>
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["currentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-primary @nextDisabled">Frem
+</a>

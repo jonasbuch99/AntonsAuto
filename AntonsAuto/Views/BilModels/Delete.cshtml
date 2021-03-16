@@ -1,0 +1,37 @@
+﻿@model AntonsAuto.Models.BilModel
+
+@{
+    ViewData["Title"] = "Slet model";
+}
+
+<h3>Er du sikker på du vil slette @Html.DisplayFor(model => model.Bilfabrikant.Navn) @Html.DisplayFor(model => model.Navn) fra databasen ?  </h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Bilfabrikant)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bilfabrikant.Navn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Navn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Navn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AntalKilometer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AntalKilometer)
+        </dd>
+
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Slet" class="btn btn-danger" /> |
+        <a asp-action="Index">Fortryd</a>
+    </form>
+</div>

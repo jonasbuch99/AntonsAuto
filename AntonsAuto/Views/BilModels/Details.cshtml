@@ -1,0 +1,36 @@
+﻿@model AntonsAuto.Models.BilModel
+
+@{
+    ViewData["Title"] = "Model detaljer";
+}
+
+<h1>Model detaljer</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Bilfabrikant)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bilfabrikant.Navn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Navn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Navn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AntalKilometer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AntalKilometer)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Rediger</a> |
+    <a asp-action="Index">Tilbage</a>
+</div>
